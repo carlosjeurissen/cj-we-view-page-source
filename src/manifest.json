@@ -7,8 +7,8 @@
   },
   "manifest_version": 2,
   "name": "View Page Source",
-  "content_security_policy": "default-src 'none'; script-src 'self'; script-src-attr 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; block-all-mixed-content; upgrade-insecure-requests; sandbox allow-same-origin allow-scripts; require-sri-for script style; report-uri https://api.jeurissen.co/reports/csp/webext/bbr/",
-  "version": "1.0.2",
+  "content_security_policy": "default-src 'none'; script-src 'self'; script-src-attr 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; block-all-mixed-content; upgrade-insecure-requests; sandbox allow-same-origin allow-scripts; require-sri-for script style; report-uri https://api.jeurissen.co/reports/csp/webext/vps/",
+  "version": "1.0.3",
   "permissions": [
     "tabs",
     "https://**",

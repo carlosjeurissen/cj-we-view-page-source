@@ -26,18 +26,5 @@
     }, openSource)
   }
 
-  function tabUpdatedCallback (tabId, changeInfo, tab) {
-    var url = changeInfo.url || tab.url || ''
-    if (isSourcePage(url)) {
-      browserOrChrome.browserAction.disable(tabId)
-    } else {
-      browserOrChrome.browserAction.enable(tabId)
-    }
-  }
-
   browserOrChrome.browserAction.onClicked.addListener(browserActionCallback)
-
-  if (browserOrChrome.browserAction.disable) {
-    browserOrChrome.tabs.onUpdated.addListener(tabUpdatedCallback)
-  }
 })()

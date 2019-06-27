@@ -5,12 +5,16 @@
 
   var viewSourcePrefix = 'view-source:'
 
+  function isSourcePage (url) {
+    return url.startsWith(viewSourcePrefix)
+  }
+
   function openSource (tabs) {
     var tabData = tabs[0]
-    var tabUrl = tabData.url
-    if (!tabUrl) return
+    var url = tabData.url
+    if (!url | isSourcePage(url)) return
     browserOrChrome.tabs.create({
-      'url': tabUrl.startsWith(viewSourcePrefix) ? tabUrl : viewSourcePrefix + tabUrl,
+      'url': viewSourcePrefix + url,
       'index': tabData.index + 1
     })
   }
@@ -22,5 +26,18 @@
     }, openSource)
   }
 
+  function tabUpdatedCallback (tabId, changeInfo, tab) {
+    var url = changeInfo.url || tab.url || ''
+    if (isSourcePage(url)) {
+      browserOrChrome.browserAction.disable(tabId)
+    } else {
+      browserOrChrome.browserAction.enable(tabId)
+    }
+  }
+
   browserOrChrome.browserAction.onClicked.addListener(browserActionCallback)
+
+  if (browserOrChrome.browserAction.disable) {
+    browserOrChrome.tabs.onUpdated.addListener(tabUpdatedCallback)
+  }
 })()

@@ -80,7 +80,7 @@ const addIntegrities = (fileContent) => {
   for (var i = 1; i < parts.length; i++) {
     var subParts = parts[i].split('__')
     parts[i] = ssri.fromData(fs.readFileSync(targetDir + '/' + subParts.shift(), 'utf8'), {
-      algorithms: ['sha512']
+      algorithms: ['sha384']
     }).toString() + subParts.join('__')
   }
   return parts.join('')

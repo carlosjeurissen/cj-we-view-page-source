@@ -1,6 +1,6 @@
 {
   "name": "cj-we-view-page-source",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "license": "UNLICENSED",
   "private": true,
   "repository": "CarlosJeurissen/cj-we-view-page-source",
@@ -14,22 +14,22 @@
   },
   "devDependencies": {
     "archiver": "~3.1.1",
-    "autoprefixer": "~9.7.1",
-    "bluebird": "~3.7.1",
+    "autoprefixer": "~9.7.4",
+    "bluebird": "~3.7.2",
     "chrome-webstore-upload": "^0.2.2",
     "cssnano": "^4.1.10",
     "fs-extra": "~8.1.0",
     "html-minifier": "^4.0.0",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
-    "postcss": "~7.0.21",
+    "postcss": "~7.0.26",
     "recursive-readdir": "^2.2.2",
     "ssri": "~7.1.0",
     "standard": "~14.3.1",
-    "stylelint": "~11.1.1",
+    "stylelint": "~13.0.0",
     "stylelint-config-standard": "~19.0.0",
-    "uglify-js": "~3.6.8",
-    "web-ext": "~3.2.1"
+    "uglify-js": "~3.7.5",
+    "web-ext": "~4.0.0"
   },
   "scripts": {
     "set-version": "node build/set-version",

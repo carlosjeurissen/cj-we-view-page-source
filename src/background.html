@@ -6,7 +6,37 @@
 
   <title>Background Page</title>
 
-  <script src="scripts/background.js" integrity="__sri_scripts/background.js__"></script>
+  <script>(function () {
+  'use strict'
+
+  var browserOrChrome = typeof chrome !== 'undefined' && chrome.runtime ? chrome : typeof browser !== 'undefined' && browser
+
+  var viewSourcePrefix = 'view-source:'
+
+  function validateUrl (url) {
+    return typeof url === 'string' && !url.startsWith(viewSourcePrefix) && url
+  }
+
+  function openSource (tabs) {
+    var tabData = tabs[0]
+    var url = validateUrl(tabData.pendingUrl) || validateUrl(tabData.url)
+    if (!url) return
+    browserOrChrome.tabs.create({
+      'url': viewSourcePrefix + url,
+      'index': tabData.index + 1
+    })
+  }
+
+  function browserActionCallback () {
+    browserOrChrome.tabs.query({
+      'active': true,
+      'currentWindow': true
+    }, openSource)
+  }
+
+  browserOrChrome.browserAction.onClicked.addListener(browserActionCallback)
+})()
+</script>
 </head>
 
 <body></body>

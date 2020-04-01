@@ -12,6 +12,7 @@ node_modules
 
 # Sublime files
 *.sublime-workspace
+*.sublime-project
 
 # Mac and windows files
 .DS_Store

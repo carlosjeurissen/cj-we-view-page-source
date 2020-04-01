@@ -1,6 +1,6 @@
 {
   "name": "cj-we-view-page-source",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "license": "UNLICENSED",
   "private": true,
   "repository": "CarlosJeurissen/cj-we-view-page-source",
@@ -13,119 +13,21 @@
     "email": "support@carlosjeurissen.com"
   },
   "devDependencies": {
-    "archiver": "~3.1.1",
-    "autoprefixer": "~9.7.4",
-    "bluebird": "~3.7.2",
-    "chrome-webstore-upload": "^0.2.2",
-    "cssnano": "^4.1.10",
-    "fs-extra": "~8.1.0",
-    "html-minifier": "^4.0.0",
-    "minimatch": "^3.0.4",
-    "minimist": "^1.2.0",
-    "postcss": "~7.0.26",
-    "recursive-readdir": "^2.2.2",
-    "ssri": "~7.1.0",
-    "standard": "~14.3.1",
-    "stylelint": "~13.0.0",
-    "stylelint-config-standard": "~19.0.0",
-    "uglify-js": "~3.7.5",
-    "web-ext": "~4.0.0"
+    "set-json-version": "~1.0.1",
+    "web-ext": "^4.1.0"
   },
   "scripts": {
-    "set-version": "node build/set-version",
-    "build": "node build/build",
-    "build-minify": "node build/build --minify",
-    "predeploy": "yarn run build-minify",
-    "deploy": "node build/deploy",
-    "pack": "yarn run deploy --packonly",
-    "pack-opera": "yarn run pack",
-    "pack-firefox": "yarn run pack",
-    "prelint": "yarn run build",
-    "lint": "web-ext lint --source-dir dist && eslint src/**/*.js",
-    "prerun-firefox": "yarn run build",
-    "run-firefox": "web-ext run --source-dir dist"
+    "build": "web-ext build",
+    "lint": "web-ext lint",
+    "run-firefox": "web-ext run --verbose --target firefox-desktop",
+    "run-chromium": "web-ext run --verbose --target chromium",
+    "set-version": "set-json-version -f package.json src/manifest.json -v"
   },
   "webExt": {
-    "sourceDir": "dist/"
-  },
-  "eslintConfig": {
-    "extends": [
-      "standard"
-    ]
-  },
-  "eslintIgnore": [
-    "dist/*"
-  ],
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "at-rule-no-unknown": [
-        true,
-        {
-          "ignoreAtRules": [
-            "if",
-            "else",
-            "include",
-            "for",
-            "function",
-            "return",
-            "mixin",
-            "each"
-          ]
-        }
-      ],
-      "selector-max-universal": 1,
-      "font-weight-notation": [
-        "numeric",
-        {
-          "ignore": [
-            "relative"
-          ]
-        }
-      ],
-      "function-url-no-scheme-relative": true,
-      "function-url-quotes": [
-        "always",
-        {
-          "except": [
-            "empty"
-          ]
-        }
-      ],
-      "selector-attribute-quotes": "always",
-      "string-quotes": "double",
-      "max-nesting-depth": 2,
-      "color-named": "never",
-      "at-rule-semicolon-space-before": "never",
-      "block-opening-brace-newline-before": "never-single-line",
-      "declaration-block-semicolon-newline-before": "never-multi-line",
-      "function-comma-newline-before": "never-multi-line",
-      "media-query-list-comma-newline-before": "never-multi-line",
-      "selector-list-comma-newline-before": "never-multi-line",
-      "selector-list-comma-space-after": "always-single-line",
-      "value-list-comma-newline-before": "never-multi-line",
-      "value-keyword-case": [
-        "lower",
-        {
-          "ignoreProperties": "unicode-range"
-        }
-      ],
-      "unit-no-unknown": [
-        true,
-        {
-          "ignoreUnits": [
-            "x"
-          ]
-        }
-      ],
-      "shorthand-property-no-redundant-values": true,
-      "no-unknown-animations": true,
-      "at-rule-no-vendor-prefix": true,
-      "media-feature-name-no-vendor-prefix": true,
-      "property-no-vendor-prefix": true,
-      "selector-no-vendor-prefix": true,
-      "value-no-vendor-prefix": true,
-      "font-family-name-quotes": "always-where-recommended"
+    "sourceDir": "src",
+    "artifactsDir": "dist_packed",
+    "build": {
+      "overwriteDest": true
     }
   }
 }

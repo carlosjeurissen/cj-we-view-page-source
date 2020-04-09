@@ -18,13 +18,5 @@ node_modules
 .DS_Store
 .tmp
 
-# Grunt files
-.grunt
-.sass-cache
-
-# Distribution directory
-dist
-dist_packed
-
-# Credentials
-credentials.json
+# Distribution
+/dist_packed

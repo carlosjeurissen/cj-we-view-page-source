@@ -1,6 +1,6 @@
 {
   "name": "cj-we-view-page-source",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "license": "UNLICENSED",
   "private": true,
   "repository": "CarlosJeurissen/cj-we-view-page-source",
@@ -13,12 +13,14 @@
     "email": "support@carlosjeurissen.com"
   },
   "devDependencies": {
-    "set-json-version": "~1.0.1",
+    "chrome-store-update": "^0.2.1",
+    "set-json-version": "~1.0.2",
     "web-ext": "^4.1.0"
   },
   "scripts": {
     "build": "web-ext build",
     "lint": "web-ext lint",
+    "deploy": "chrome-store-update -e lcdkhcclmhdepcmfjmdjehekfdldpbje -cp {home}/.chromepublishcredentials -pp dist_packed/view_page_source-{version}.zip",
     "run-firefox": "web-ext run --verbose --target firefox-desktop",
     "run-firefox-android": "web-ext run --verbose --target firefox-android",
     "run-chromium": "web-ext run --verbose --target chromium",

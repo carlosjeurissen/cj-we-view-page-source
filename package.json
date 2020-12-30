@@ -1,6 +1,6 @@
 {
   "name": "cj-we-view-page-source",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "license": "UNLICENSED",
   "private": true,
   "repository": "CarlosJeurissen/cj-we-view-page-source",
@@ -13,9 +13,9 @@
     "email": "support@carlosjeurissen.com"
   },
   "devDependencies": {
-    "chrome-store-update": "^0.2.1",
-    "set-json-version": "~1.0.2",
-    "web-ext": "^4.1.0"
+    "chrome-store-update": "^0.2.8",
+    "set-json-version": "~1.0.4",
+    "web-ext": "^5.4.1"
   },
   "scripts": {
     "build": "web-ext build",

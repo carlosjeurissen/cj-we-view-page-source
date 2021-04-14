@@ -6,36 +6,38 @@
 
   <title>Background Page</title>
 
-  <script>(function () {
-  'use strict'
+  <script>'use strict';
 
-  var browserOrChrome = typeof chrome !== 'undefined' && chrome.runtime ? chrome : typeof browser !== 'undefined' && browser
+(function () {
+  var browserOrChrome = typeof chrome !== 'undefined' && chrome.runtime ? chrome : typeof browser !== 'undefined' && browser;
 
-  var viewSourcePrefix = 'view-source:'
+  var viewSourcePrefix = 'view-source:';
 
   function validateUrl (url) {
-    return typeof url === 'string' && !url.startsWith(viewSourcePrefix) && url
+    return typeof url === 'string' && !url.startsWith(viewSourcePrefix) && url;
   }
 
   function openSource (tabs) {
-    var tabData = tabs[0]
-    var url = validateUrl(tabData.pendingUrl) || validateUrl(tabData.url)
-    if (!url) return
+    var tabData = tabs[0];
+    var url = validateUrl(tabData.pendingUrl) || validateUrl(tabData.url);
+    if (!url) return;
     browserOrChrome.tabs.create({
-      'url': viewSourcePrefix + url,
-      'index': tabData.index + 1
-    })
+      url: viewSourcePrefix + url,
+      index: tabData.index + 1
+    });
   }
 
   function browserActionCallback () {
     browserOrChrome.tabs.query({
-      'active': true,
-      'currentWindow': true
-    }, openSource)
+      active: true,
+      currentWindow: true
+    }, openSource);
   }
 
-  browserOrChrome.browserAction.onClicked.addListener(browserActionCallback)
-})()
+  browserOrChrome.browserAction.onClicked.addListener(browserActionCallback);
+
+  browserOrChrome.runtime.setUninstallURL('https://apps.jeurissen.co/view-page-source/uninstalled');
+})();
 </script>
 </head>
 
